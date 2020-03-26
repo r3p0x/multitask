@@ -4,11 +4,12 @@ import styled, { createGlobalStyle } from 'styled-components'
 import DevLogs from './components/DevLogs'
 import Play from './components/Play'
 import Balance from './components/Balance'
+import Dodge from './components/Dodge'
 
 function App() {
   const [gameOver, setGameOver] = React.useState(true)
   const [gameTime, setGameTime] = React.useState(null)
-  const [level, setLevel] = React.useState(1)
+  const [level, setLevel] = React.useState(0)
 
   // G A M E   T I M E R 
   React.useEffect(() => {
@@ -35,14 +36,16 @@ function App() {
   const restartGame = () => {
     setGameOver(false)
     setGameTime(0)
+    setLevel(1)
   }
 
   return (
     <StyledApp>
       <GlobalStyle />
       {gameOver && <Play gameTime={gameTime} restartGame={restartGame} />}
-      <Balance gameOver={gameOver} setGameOver={setGameOver} level={level} />
-      <DevLogs gameTime={gameTime} level={level} />
+      { level >= 1 && <DevLogs gameTime={gameTime} level={level} /> }
+      { level >= 1 && <Balance gameOver={gameOver} setGameOver={setGameOver} level={level} /> }
+      { level >= 2 && <Dodge level={level} /> }
     </StyledApp>
   )
 }
@@ -59,6 +62,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
   }
   h1 {
     color: white;
@@ -90,6 +94,7 @@ const GlobalStyle = createGlobalStyle`
     --transition: all ease-in-out 200ms;
     --primary: #00e4c4;
     --dark: #2e2e2e;
+    --darker: #0d0d0d;
   }
 `
 

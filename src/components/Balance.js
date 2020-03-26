@@ -12,7 +12,8 @@ const Balance = ({gameOver, setGameOver, level}) => {
       } else {
         const id = setInterval(() => {
           setBallPosition(ballPosition * 1.01 + tilt)
-        }, 100)
+          setTilt(tilt + (ballPosition / 300))
+        }, 10000)
         return () => clearInterval(id)
       }
     } else {
@@ -60,23 +61,22 @@ const Balance = ({gameOver, setGameOver, level}) => {
 
 const StyledBalance = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  top: 5px;
+  left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  overflow: hidden;
+  height: calc(100vh - 10px);
+  width: calc(100% - 10px);
+  background-color: rgba(255, 255, 255, 0.1);
   transition: var(--transition);
   &.level-2 {
-    width: 50%;
+    width: calc((100% - 15px) / 2);
   }
   &.level-3, &.level-4 {
-    width: 50%;
-    height: 50vh;
+    width: calc((100% - 15px) / 2);
+    height: calc((100vh - 15px) / 2);
   }
   .container {
     position: relative;

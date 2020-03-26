@@ -5,33 +5,34 @@ const DevLogs = ({gameTime, level}) => {
   return (
     <StyledDevLogs>
       <div className='log'>
-        <span className='label'>Game Time</span>
-        <span className='output'>{gameTime || 0}</span>
+        <span className='output'>{level}</span>
+        <span className='label'>Level</span>
       </div>
       <div className='log'>
-        <span className='label'>Level</span>
-        <span className='output'>{level}</span>
+        <span className='output'>{gameTime || 0}</span>
+        <span className='label'>Score</span>
       </div>
     </StyledDevLogs>
   )
 }
 
 const StyledDevLogs = styled.div`
-  width: 300px;
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
   position: fixed;
-  bottom: 50px;
-  left: 50px;
+  top: 50px;
+  left: 50%;
+  z-index: 1000;
+  transform: translate(-50%);
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--dark);
   color: white;
-  padding: 25px;
   .log {
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+    align-items: center;
     .label {
       font-weight: 400;
       font-size: 14px;
@@ -40,7 +41,7 @@ const StyledDevLogs = styled.div`
       opacity: 0.5;
     }
     .output {
-      font-size: 21px;
+      font-size: 28px;
       font-weight: 800;
     }
   }
