@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const DevLogs = ({gameTime}) => {
+const DevLogs = ({gameTime, level}) => {
   return (
     <StyledDevLogs>
       <div className='log'>
         <span className='label'>Game Time</span>
         <span className='output'>{gameTime || 0}</span>
+      </div>
+      <div className='log'>
+        <span className='label'>Level</span>
+        <span className='output'>{level}</span>
       </div>
     </StyledDevLogs>
   )

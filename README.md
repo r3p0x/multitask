@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Multitask
+This project is a personal practicing and experimenting project. Multitask was once available as a flash game for the browser. Since flash is not widely supported anymore and I really miss this game I will build it from scratch. The project will be build with react and was created with create-react-app.
 
 ## Available Scripts
 

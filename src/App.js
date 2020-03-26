@@ -8,11 +8,11 @@ import Balance from './components/Balance'
 function App() {
   const [gameOver, setGameOver] = React.useState(true)
   const [gameTime, setGameTime] = React.useState(null)
+  const [level, setLevel] = React.useState(1)
 
-  // G A M E   O V E R 
+  // G A M E   T I M E R 
   React.useEffect(() => {
-    if (gameOver) {
-    } else {
+    if (!gameOver) {
       const id = setInterval(() => {
         setGameTime(gameTime + 1)
       }, 1000)
@@ -20,6 +20,18 @@ function App() {
     }
   }, [gameTime, gameOver])
 
+  React.useEffect(() => {
+    if (gameTime === 5) {
+      setLevel(2)
+    }
+    if (gameTime === 10) {
+      setLevel(3)
+    }
+    if (gameTime === 15) {
+      setLevel(4)
+    }
+  }, [gameTime])
+  
   const restartGame = () => {
     setGameOver(false)
     setGameTime(0)
@@ -29,13 +41,14 @@ function App() {
     <StyledApp>
       <GlobalStyle />
       {gameOver && <Play gameTime={gameTime} restartGame={restartGame} />}
-      <Balance gameOver={gameOver} setGameOver={setGameOver} />
-      <DevLogs gameTime={gameTime} />
+      <Balance gameOver={gameOver} setGameOver={setGameOver} level={level} />
+      <DevLogs gameTime={gameTime} level={level} />
     </StyledApp>
   )
 }
 
 const StyledApp = styled.div`
+  position: relative;
   background-color: #2e2e2e;
   height: 100vh;
   width: 100%;
