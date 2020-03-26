@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 function App() {
   const [gameOver, setGameOver] = React.useState(true)
-  const [gameTime, setGameTime] = React.useState(0)
+  const [gameTime, setGameTime] = React.useState(null)
 
   // B A L A N C E   S T A T E 
   const [tilt, setTilt] = React.useState(1)
@@ -68,6 +68,8 @@ function App() {
     <StyledApp>
       {gameOver && (
         <StyledPlayModal>
+          <h1>{gameTime && gameTime}</h1>
+          <span>{gameTime && 'Your Score'}</span>
           <button className='btn btn-play' onClick={() => restartGame()}>
             <div>PLAY</div>
           </button>
@@ -164,11 +166,25 @@ const StyledPlayModal = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  h1 {
+    font-size: 128px;
+    margin-bottom: -15px;
+  }
+  span {
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
   .btn.btn-play {
     height: 300px;
     width: 300px;
+    margin-top: 50px;
     background-color: var(--dark);
     border-radius: 50%;
     outline: none;
